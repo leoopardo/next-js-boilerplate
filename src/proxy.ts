@@ -8,14 +8,9 @@ import { routing } from './libs/I18nRouting';
 
 const handleI18nRouting = createMiddleware(routing);
 
-const isProtectedRoute = createRouteMatcher(['/dashboard(.*)', '/:locale/dashboard(.*)']);
+const isProtectedRoute = createRouteMatcher([]);
 
-const isAuthPage = createRouteMatcher([
-  '/sign-in(.*)',
-  '/:locale/sign-in(.*)',
-  '/sign-up(.*)',
-  '/:locale/sign-up(.*)',
-]);
+const isAuthPage = createRouteMatcher([]);
 
 // Improve security with Arcjet
 const aj = arcjet.withRule(
@@ -48,7 +43,7 @@ export default async function proxy(request: NextRequest, event: NextFetchEvent)
     // oxlint-disable-next-line typescript/return-await
     return clerkMiddleware(async (auth, req) => {
       if (isProtectedRoute(req)) {
-        const locale = req.nextUrl.pathname.match(/(\/.*)\/dashboard/u)?.at(1) ?? '';
+        const locale = req.nextUrl.pathname.match(/(\/.*)\/PROTECTED_PATH/u)?.at(1) ?? '';
 
         const signInUrl = new URL(`${locale}/sign-in`, req.url);
 

@@ -2,10 +2,19 @@ import type { KnipConfig } from 'knip';
 
 const config: KnipConfig = {
   // Files to exclude from Knip analysis
-  ignore: ['checkly.config.ts', 'src/libs/I18n.ts', 'src/types/I18n.ts'],
+  ignore: [
+    'checkly.config.ts',
+    'src/libs/I18n.ts',
+    'src/libs/I18nNavigation.ts',
+    'src/types/I18n.ts',
+    'src/locales/**/index.ts',
+  ],
   // Dependencies to ignore during analysis
   ignoreDependencies: [
     '@clerk/shared',
+    '@hookform/resolvers',
+    'react-hook-form',
+    'vitest-browser-react',
     '@swc/helpers', // Avoid error in CI: "`npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync."
   ],
   // Include custom Playwright test file suffixes

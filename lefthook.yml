@@ -8,6 +8,8 @@ commit-msg:
 pre-commit:
   jobs:
     - name: ultracite
+      env:
+        NODE_OPTIONS: --experimental-strip-types
       run: npx ultracite fix --type-aware --type-check
       glob:
         - '**/*.js'
