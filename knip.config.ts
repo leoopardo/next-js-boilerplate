@@ -11,7 +11,6 @@ const config: KnipConfig = {
   ],
   // Dependencies to ignore during analysis
   ignoreDependencies: [
-    '@clerk/shared',
     '@hookform/resolvers',
     'react-hook-form',
     'vitest-browser-react',
