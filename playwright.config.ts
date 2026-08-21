@@ -29,21 +29,6 @@ export default defineConfig<ChromaticConfig>({
 
   // Run your local dev server before starting the tests:
   // https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests
-  webServer: {
-    command: process.env.CI
-      ? "pglite-server -m 100 --run 'run-s db:migrate start'"
-      : "pglite-server -m 100 --run 'run-s db:migrate dev:next'",
-    url: baseURL,
-    timeout: 60 * 1000,
-    reuseExistingServer: !process.env.CI,
-    gracefulShutdown: { signal: 'SIGTERM', timeout: 2 * 1000 },
-    env: {
-      BROWSER_TO_TERMINAL_DISABLED: 'true',
-      NEXT_PUBLIC_SENTRY_DISABLED: 'true',
-      NEXT_PUBLIC_APP_URL: baseURL,
-      PORT,
-    },
-  },
 
   // Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions.
   use: {
